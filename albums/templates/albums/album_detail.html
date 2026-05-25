@@ -1,0 +1,18 @@
+{% extends "albums/base.html" %}
+{% block content %}
+<h2>{{ object.title }}</h2>
+<p>{{ object.description }}</p>
+
+<a href="{% url 'album-update' object.pk %}">Edit</a>
+<a href="{% url 'album-delete' object.pk %}">Delete</a>
+
+<h3>Photos</h3>
+{% for photo in object.photos.all %}
+    <div>
+        <img src="{{ photo.image.url }}" width="250">
+        <p>{{ photo.caption }}</p>
+    </div>
+{% empty %}
+    <p>No photos uploaded.</p>
+{% endfor %}
+{% endblock %}

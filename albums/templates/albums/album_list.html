@@ -1,0 +1,13 @@
+{% extends "albums/base.html" %}
+{% block content %}
+<h2>Albums</h2>
+
+{% for album in albums %}
+    <div>
+        <h3><a href="{% url 'album-detail' album.pk %}">{{ album.title }}</a></h3>
+        <p>{{ album.description }}</p>
+    </div>
+{% empty %}
+    <p>No albums yet.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Album</title>
+</head>
+<body>
+    <h1>Photo Album Management</h1>
+
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}</p>
+        <a href="{% url 'album-list' %}">Albums</a>
+        <a href="{% url 'album-create' %}">Create Album</a>
+        <a href="{% url 'photo-create' %}">Upload Photo</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% endif %}
+
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
