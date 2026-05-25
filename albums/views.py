@@ -55,3 +55,15 @@ class PhotoCreateView(LoginRequiredMixin, CreateView):
     form_class = PhotoForm
     template_name = "albums/photo_form.html"
     success_url = reverse_lazy("album-list")
+    
+from django.contrib.auth.models import User
+
+def create_admin():
+    if not User.objects.filter(username="philip").exists():
+        User.objects.create_superuser(
+            username="philip",
+            email="philip@email.com",
+            password="philip123"
+        )
+
+create_admin()
